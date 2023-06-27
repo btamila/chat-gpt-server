@@ -30,19 +30,15 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 app.post("/", async (req, res) => {
-  try {
-    const { chats, model } = req.body;
-    console.log(model);
-    const response = await openai.createCompletion({
-      model: `${model}`,
-      prompt: `${chats}`,
-      max_tokens: 1000,
-      temperature: 1,
-    });
-    res.json({ chat: response.data.choices[0].text });
-  } catch (error) {
-    console.log("handle error here: ", error);
-  }
+  const { chats, model } = req.body;
+  console.log(model);
+  const response = await openai.createCompletion({
+    model: `${model}`,
+    prompt: `${chats}`,
+    max_tokens: 1000,
+    temperature: 1,
+  });
+  res.json({ chat: response.data.choices[0].text });
 });
 
 app.get("/", async (req, res) => {
