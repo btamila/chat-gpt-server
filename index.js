@@ -41,9 +41,7 @@ app.post("/", async (req, res) => {
     });
     res.json({ chat: response.data.choices[0].text });
   } catch (error) {
-    res.status(400).send({
-      chat: error,
-    });
+    console.log("handle error here: ", error);
   }
 });
 
