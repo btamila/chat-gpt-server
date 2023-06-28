@@ -33,7 +33,7 @@ app.post("/", async (req, res) => {
   const { chats, model } = req.body;
   console.log(model);
   const response = await openai.createCompletion({
-    model: `${model}`,
+    model: "text-davinci-003",
     prompt: `${chats}`,
     max_tokens: 1000,
     temperature: 1,
@@ -43,7 +43,8 @@ app.post("/", async (req, res) => {
 
 app.get("/", async (req, res) => {
   const response = await openai.listModels();
-  res.status(200).send({ model: response.data.data });
+  // res.status(200).send({ model: response.data.data });
+  res.json({ model: response.data.data });
 });
 
 app.listen(port, () => {
