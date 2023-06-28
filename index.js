@@ -27,13 +27,13 @@ app.post("/", async (req, res) => {
     max_tokens: 1000,
     temperature: 1,
   });
-  res.json({ chat: response.data.choices[0].text });
+  res.status(200).send({ chat: response.data.choices[0].text });
 });
 
 app.get("/", async (req, res) => {
   const response = await openai.listModels();
-  // res.status(200).send({ model: response.data.data });
-  res.json({ model: response.data.data });
+  res.status(200).send({ model: response.data.data });
+  // res.json({ model: response.data.data });
 });
 
 app.get("/chat-gpt", async (req, res) => {
