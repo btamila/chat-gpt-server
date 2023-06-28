@@ -24,27 +24,31 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const configuration = new Configuration({
-  apiKey: "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",
-});
-const openai = new OpenAIApi(configuration);
+// const configuration = new Configuration({
+//   apiKey: "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",
+// });
+// const openai = new OpenAIApi(configuration);
 
-app.post("/", async (req, res) => {
-  const { chats, model } = req.body;
-  console.log(model);
-  const response = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: `${chats}`,
-    max_tokens: 1000,
-    temperature: 1,
-  });
-  res.json({ chat: response.data.choices[0].text });
-});
+// app.post("/", async (req, res) => {
+//   const { chats, model } = req.body;
+//   console.log(model);
+//   const response = await openai.createCompletion({
+//     model: "text-davinci-003",
+//     prompt: `${chats}`,
+//     max_tokens: 1000,
+//     temperature: 1,
+//   });
+//   res.json({ chat: response.data.choices[0].text });
+// });
+
+// app.get("/", async (req, res) => {
+//   const response = await openai.listModels();
+//   // res.status(200).send({ model: response.data.data });
+//   res.json({ model: response.data.data });
+// });
 
 app.get("/", async (req, res) => {
-  const response = await openai.listModels();
-  // res.status(200).send({ model: response.data.data });
-  res.json({ model: response.data.data });
+  res.status(200).send({ Message: "Hello world!" });
 });
 
 app.listen(port, () => {
