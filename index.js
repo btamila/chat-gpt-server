@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
